@@ -24,7 +24,7 @@ const corsOpt: Cors.CorsOptions = {
 // Class App start here
 // TODO: EXPLAINATION TOBE UPDATE HERE!
 class App {
-  private readonly application: Application
+  public readonly application: Application
   // port will be saved as private variable
   private readonly port: number | string
 
