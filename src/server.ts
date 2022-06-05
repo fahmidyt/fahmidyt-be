@@ -1,5 +1,8 @@
-import App from './app'
+import App from "./app";
+import InitDatabase from "./config/database";
 
-const Server = new App()
+const Server = new App();
 
-Server.run()
+InitDatabase();
+
+Server.run();
