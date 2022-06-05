@@ -61,7 +61,9 @@ export const MONGODB_HOST: string = process.env.MONGODB_HOST ?? "127.0.0.1";
  * Mongo DB Port
  * @default 27017 - this default value of port host mongo db
  */
-export const MONGODB_PORT: number = Number(process.env.MONGODB_PORT) ?? 27017;
+export const MONGODB_PORT: number = isNaN(Number(process.env.MONGODB_PORT))
+  ? 27017
+  : Number(process.env.MONGODB_PORT);
 
 /**
  * Mongo DB Auth
