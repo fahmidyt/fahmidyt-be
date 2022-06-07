@@ -36,19 +36,19 @@ export const APP_PORT: number | string = process.env.APP_PORT ?? 8000;
 /**
  * URL Client for staging. You probably need to change this to meet your needed
  */
-export const URL_CLIENT_STAGING: string = "http://localhost:5000";
+export const URL_CLIENT_STAGING: string = process.env.URL_CLIENT_STAGING ?? "http://localhost:5000";
 /**
  * URL Client for Production. You probably need to change this to meet your needed
  */
-export const URL_CLIENT_PRODUCTION: string = "http://localhost:5000";
+export const URL_CLIENT_PRODUCTION: string = process.env.URL_CLIENT_PRODUCTION ?? "http://localhost:5000";
 /**
  * URL Server for staging. You probably need to change this to meet your needed
  */
-export const URL_SERVER_STAGING: string = "http://localhost:8000";
+export const URL_SERVER_STAGING: string = process.env.URL_SERVER_STAGING ?? "http://localhost:8000";
 /**
  * URL Server for Production. You probably need to change this to meet your needed
  */
-export const URL_SERVER_PRODUCTION: string = "http://localhost:8000";
+export const URL_SERVER_PRODUCTION: string = process.env.URL_SERVER_PRODUCTION ?? "http://localhost:8000";
 
 // DATABASE ENV AREA
 /**
