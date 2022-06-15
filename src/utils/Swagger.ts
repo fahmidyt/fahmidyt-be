@@ -11,7 +11,7 @@ import {
   URL_SERVER_STAGING,
 } from "./env";
 
-const baseRoutes = path.resolve(`${__dirname}/../docs/routes`);
+const baseRoutes = path.resolve(`${__dirname}/../../docs/routes`);
 
 const getDocs = (basePath: string | Buffer) => {
   return fs.readdirSync(basePath).reduce((acc, file) => {

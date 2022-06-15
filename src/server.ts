@@ -1,5 +1,5 @@
-import App from "./app";
-import InitDatabase from "./config/database";
+import App from "app";
+import InitDatabase from "@config/database";
 
 const Server = new App();
 

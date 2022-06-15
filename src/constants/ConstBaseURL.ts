@@ -5,7 +5,7 @@ import {
   URL_CLIENT_STAGING,
   URL_SERVER_PRODUCTION,
   URL_SERVER_STAGING,
-} from "../utils/env";
+} from "@utils/env";
 
 const URL_CLIENT = {
   development: "http://localhost:5000",

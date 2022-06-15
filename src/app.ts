@@ -11,10 +11,10 @@ import hpp from 'hpp'
 import path from 'path'
 import swaggerUI from 'swagger-ui-express'
 
-import publicRoutes from './routes/public'
-import allowedOrigins  from './constants/ConstAllowedOrigins'
-import { APP_NAME, APP_PORT, NODE_ENV } from './utils/env'
-import { optionsSwaggerUI, swaggerDoc } from './utils/Swagger'
+import publicRoutes from '@routes/public'
+import allowedOrigins  from '@constants/ConstAllowedOrigins'
+import { APP_NAME, APP_PORT, NODE_ENV } from '@utils/env'
+import { optionsSwaggerUI, swaggerDoc } from '@utils/Swagger'
 
 // set your cors options here!
 const corsOpt: Cors.CorsOptions = {

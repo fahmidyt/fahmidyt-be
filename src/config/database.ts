@@ -6,7 +6,7 @@ import {
   MONGODB_PASSWORD,
   MONGODB_PORT,
   MONGODB_USERNAME,
-} from "../utils/env";
+} from "@utils/env";
 
 const URI: string = `mongodb://${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_DATABASE}`
 const OPT: mongoose.ConnectOptions = {

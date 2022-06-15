@@ -1,6 +1,6 @@
 import Express, { Request, Response } from 'express'
-import { BASE_URL_SERVER } from '../constants/ConstBaseURL'
-import { NODE_ENV } from '../utils/env'
+import { BASE_URL_SERVER } from '@constants/ConstBaseURL'
+import { NODE_ENV } from '@utils/env'
 
 const route = Express.Router()
 
@@ -12,7 +12,7 @@ interface IndexResponseData {
 }
 
 // index route
-route.get('/', function(req: Request, res: Response) {
+route.get('/', function (req: Request, res: Response) {
   let data: IndexResponseData = {
     message: 'Welcome to Fahmidyt Backend API Service!',
     maintainer: 'fahmidyt, <fmidyt@gmail.com> <https://github.com/fahmidyt>',
@@ -28,5 +28,8 @@ route.get('/', function(req: Request, res: Response) {
 
   return res.status(200).json(data)
 })
+
+require('@controllers/Lifestory/controller')
+require('@controllers/Portofolio/controller')
 
 export default route
