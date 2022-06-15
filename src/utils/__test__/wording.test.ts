@@ -1,4 +1,4 @@
-import wording from '../wording'
+import wording from '@utils/wording'
 
 describe('Utils: Wording', () => {
   // wording required
