@@ -29,7 +29,7 @@ route.get('/', function (req: Request, res: Response) {
   return res.status(200).json(data)
 })
 
-require('@controllers/Lifestory/controller')
-require('@controllers/Portofolio/controller')
-
 export default route
+
+require('@controllers/Portofolio/controller')
+// require('@controllers/Page/controller')

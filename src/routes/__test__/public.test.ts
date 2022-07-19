@@ -1,14 +1,14 @@
-import request from "supertest";
-import app from "app";
+import request from 'supertest'
+import app from '../../app'
 
-const App = new app();
+const App = new app()
 
-describe("Public Route", () => {
-  it("GET / responds with json", (done: jest.DoneCallback) => {
+describe('[Routes] Public', () => {
+  it('[GET] /', (done: jest.DoneCallback) => {
     request(App.application)
-      .get("/")
+      .get('/')
       .set('Accept', 'application/json')
-      .expect("Content-Type", /json/)
+      .expect('Content-Type', /json/)
       .expect(200, done)
-  });
-});
+  })
+})
