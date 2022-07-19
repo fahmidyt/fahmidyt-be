@@ -12,13 +12,13 @@ import path from 'path'
 import swaggerUI from 'swagger-ui-express'
 
 import publicRoutes from '@routes/public'
-import allowedOrigins  from '@constants/ConstAllowedOrigins'
+import allowedOrigins from '@constants/ConstAllowedOrigins'
 import { APP_NAME, APP_PORT, NODE_ENV } from '@utils/env'
 import { optionsSwaggerUI, swaggerDoc } from '@utils/Swagger'
 
 // set your cors options here!
 const corsOpt: Cors.CorsOptions = {
-  origin: allowedOrigins
+  origin: allowedOrigins,
 }
 
 // Class App start here
@@ -31,7 +31,7 @@ class App {
   // let's construct the app
   constructor(port?: number) {
     // you could configure with different value when init the "this Class"
-    this.port = port || APP_PORT
+    this.port = port ?? APP_PORT
     this.application = Express()
     this.plugins()
 
@@ -43,7 +43,6 @@ class App {
     this.routes()
   }
 
-  
   // This is the place you could init your plugins here!
   // just use it and it will be ready to go
   private plugins(): void {
@@ -54,7 +53,7 @@ class App {
     this.application.use(
       Express.json({
         limit: '200mb',
-        type: 'application/json'
+        type: 'application/json',
       })
     )
     this.application.use(CookieParser())
@@ -80,14 +79,14 @@ class App {
     )
   }
 
-  private routes() {
+  private routes(): void {
     this.application.use(publicRoutes)
 
     // Catch error 404 when endpoint not found
     this.application.use('*', function (req: Request, res: Response) {
       return res.status(404).json({
         status: 404,
-        message: `Sorry, HTTP resource you are looking for was not found.`
+        message: `Sorry, HTTP resource you are looking for was not found.`,
       })
     })
   }
@@ -103,7 +102,9 @@ class App {
       res.locals.error = req.app.get('env') === 'development' ? err : {}
 
       // TODO: create log
-      console.error(`${errStatus} - ${errMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`)
+      console.error(
+        `${errStatus} - ${errMessage} - ${req.originalUrl} - ${req.method} - ${req.ip}`
+      )
 
       res.status(errStatus).render('ERROR!')
       res.render('error')
@@ -112,9 +113,9 @@ class App {
     this.application.set('port', this.port)
     const server = http.createServer(this.application)
 
-    const onError = (error: { syscall: string, code: string }): void => {
+    const onError = (error: { syscall: string; code: string }): void => {
       if (error.syscall !== 'listen') {
-        throw error
+        throw new Error(`${error.code}: ${error.syscall}`)
       }
 
       const bind =
@@ -127,13 +128,15 @@ class App {
         case 'EACCES':
           console.error(`${bind} requires elevated privileges`)
           process.exit(1)
+          break
 
         case 'EADDRINUSE':
           console.error(`${bind} is already in use`)
           process.exit(1)
+          break
 
         default:
-          throw error
+          throw new Error(`${error.syscall}: ${error.code}`)
       }
     }
 
