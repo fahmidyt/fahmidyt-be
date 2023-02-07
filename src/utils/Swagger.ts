@@ -1,36 +1,43 @@
-import fs from "fs";
-import path from "path";
-import swaggerJSDoc from "swagger-jsdoc";
+import fs from 'fs'
+import path from 'path'
+import swaggerJSDoc from 'swagger-jsdoc'
 import { capitalize } from 'lodash'
 
-import { BASE_URL_SERVER } from "../constants/ConstBaseURL";
+import { BASE_URL_SERVER } from '../constants/ConstBaseURL'
 import {
   APP_NAME,
   NODE_ENV,
   URL_SERVER_PRODUCTION,
   URL_SERVER_STAGING,
-} from "./env";
+} from './env'
 
-const baseRoutes = path.resolve(`${__dirname}/../../docs/routes`);
+const DOCS_PATH = `${__dirname}/../../../docs/routes`
 
-const getDocs = (basePath: string | Buffer) => {
+// create docs directory if not exist!
+if (!fs.existsSync(DOCS_PATH)) fs.mkdirSync(DOCS_PATH, { recursive: true })
+
+const baseRoutes = path.resolve(DOCS_PATH)
+
+// get every docs inside
+const getDocs = (basePath: string | Buffer): any => {
   return fs.readdirSync(basePath).reduce((acc, file) => {
-    const data = require(`${baseRoutes}/${file}`);
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const data = require(`${baseRoutes}/${file}`)
     acc = {
       ...acc,
       ...data,
-    };
-    return acc;
-  }, {});
-};
+    }
+    return acc
+  }, {})
+}
 
-const docsSources = getDocs(baseRoutes);
+const docsSources = getDocs(baseRoutes)
 
-let baseURLServer = [];
-let swaggerOptURL = [];
+let baseURLServer = []
+let swaggerOptURL = []
 
 switch (NODE_ENV) {
-  case "development":
+  case 'development':
     baseURLServer = [
       {
         url: `${BASE_URL_SERVER}/v1`,
@@ -38,13 +45,13 @@ switch (NODE_ENV) {
       },
       {
         url: `${URL_SERVER_STAGING}/v1`,
-        description: "Staging Server",
+        description: 'Staging Server',
       },
       {
         url: `${URL_SERVER_PRODUCTION}/v1`,
-        description: "Production Server",
+        description: 'Production Server',
       },
-    ];
+    ]
 
     swaggerOptURL = [
       {
@@ -53,14 +60,14 @@ switch (NODE_ENV) {
       },
       {
         url: `${URL_SERVER_STAGING}/v1/api-docs.json`,
-        name: "Staging Server",
+        name: 'Staging Server',
       },
       {
         url: `${URL_SERVER_PRODUCTION}/v1/api-docs.json`,
-        name: "Production Server",
+        name: 'Production Server',
       },
-    ];
-    break;
+    ]
+    break
 
   default:
     baseURLServer = [
@@ -68,15 +75,15 @@ switch (NODE_ENV) {
         url: `${BASE_URL_SERVER}/v1`,
         description: `${capitalize(NODE_ENV)} Server`,
       },
-    ];
+    ]
 
     swaggerOptURL = [
       {
         url: `${BASE_URL_SERVER}/v1/api-docs.json`,
         name: `${capitalize(NODE_ENV)} Server`,
       },
-    ];
-    break;
+    ]
+    break
 }
 
 export const swaggerOptions = {
