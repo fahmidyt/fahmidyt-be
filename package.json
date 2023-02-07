@@ -6,7 +6,7 @@
   "author": "fmidyt <fmidyt@gmail.com>",
   "license": "MIT",
   "engines": {
-    "node": "14.17"
+    "node": "^14.17"
   },
   "scripts": {
     "start": "nodemon --exec \"ts-node\" ./src/server.ts",
